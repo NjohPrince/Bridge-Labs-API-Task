@@ -1,0 +1,33 @@
+{
+  "name": "bridge-labs-api-task",
+  "version": "1.0.0",
+  "description": "APIs built using Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NjohPrince/Bridge-Labs-API-Task.git"
+  },
+  "keywords": [],
+  "author": "Njoh Noh Prince Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NjohPrince/Bridge-Labs-API-Task/issues"
+  },
+  "homepage": "https://github.com/NjohPrince/Bridge-Labs-API-Task#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "fast-two-sms": "^3.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.8"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
