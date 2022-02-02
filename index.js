@@ -7,6 +7,9 @@ const cors = require("cors");
 const { join } = require("path");
 const mongoose = require("mongoose");
 
+const swaggerUI = require("swagger-ui-express");
+const docs = require("./docs");
+
 // dotenv config
 require("dotenv").config();
 
@@ -52,6 +55,8 @@ if (process.env.NODE_ENV === "development") {
 // routes middleware
 app.use("/api", authRoutes);
 app.use("/api", postRoutes);
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs));
 
 app.get("/", (req, res) => {
   res.status(200).send({ message: "APIs CREATED BY CODEGEEK" });

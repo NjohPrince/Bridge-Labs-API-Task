@@ -2,21 +2,17 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema(
   {
-    name: {
+    p_name: {
       type: String,
       required: true,
     },
-    desc: {
+    p_desc: {
       type: String,
       required: true,
     },
-    path: {
+    p_path: {
       type: String,
       required: true,
-    },
-    image: {
-      type: String,
-      required: false,
     },
   },
   { timestamps: true }
