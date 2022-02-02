@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const { join } = require("path");
 const mongoose = require("mongoose");
 
 // dotenv config
@@ -11,6 +12,7 @@ require("dotenv").config();
 
 // require routes
 const authRoutes = require("./routes/auth");
+const postRoutes = require("./routes/post");
 
 // app
 const app = express();
@@ -36,8 +38,11 @@ const startServer = async () => {
 
 // middlewares
 app.use(morgan("dev"));
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(express.static(join(__dirname, "/uploads")));
 
 // cors
 if (process.env.NODE_ENV === "development") {
@@ -46,6 +51,11 @@ if (process.env.NODE_ENV === "development") {
 
 // routes middleware
 app.use("/api", authRoutes);
+app.use("/api", postRoutes);
+
+app.get("/", (req, res) => {
+  res.status(200).send({ message: "APIs CREATED BY CODEGEEK" });
+});
 
 // server port config
 const PORT = process.env.PORT || 8000;
