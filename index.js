@@ -1,27 +1,54 @@
+// packages || dependencies
 const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const mongoose = require("mongoose");
 
+// dotenv config
+require("dotenv").config();
+
+// require routes
+const authRoutes = require("./routes/auth");
+
+// app
 const app = express();
 
-var corsOptions = {
-  origin: "*",
+// setting up the database connection and server controller
+const startServer = async () => {
+  await mongoose
+    .connect(process.env.DATABASE, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    })
+
+    .then(() => {
+      console.log("Connected to MongoDB!");
+      app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
-app.use(cors(corsOptions));
+// middlewares
+app.use(morgan("dev"));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
-// parse requests of content-type - application/json
-app.use(express.json());
+// cors
+if (process.env.NODE_ENV === "development") {
+  app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
+}
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+// routes middleware
+app.use("/api", authRoutes);
 
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "API ENDPOINTS BY CODEGEEK." });
-});
+// server port config
+const PORT = process.env.PORT || 8000;
 
-// set port, listen for requests
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+// start the server
+startServer();
