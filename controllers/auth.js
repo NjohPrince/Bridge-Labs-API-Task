@@ -1,5 +1,6 @@
 const { encrypt, compare } = require("../services/crypto");
 const { generateOTP } = require("../services/otp");
+const { sendMail } = require("../services/mail");
 const User = require("../models/User");
 
 module.exports.signUpUser = async (req, res) => {
@@ -46,7 +47,15 @@ const createUser = async (email, password) => {
   if (!newUser) {
     return [false, "Unable to sign you up"];
   }
-  return [true, newUser];
+  try {
+    await sendMail({
+      to: email,
+      OTP: otpGenerated,
+    });
+    return [true, newUser];
+  } catch (error) {
+    return [false, "Unable to sign up, Please try again later", error];
+  }
 };
 
 const validateUserSignUp = async (email, otp) => {
