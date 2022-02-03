@@ -1,7 +1,7 @@
 const { encrypt, compare } = require("../services/crypto");
 const { generateOTP } = require("../services/otp");
 const { sendMail } = require("../services/mail");
-const User = require("../models/User");
+const User = require("../models/user");
 
 module.exports.signUpUser = async (req, res) => {
   const { name, email, password } = req.body;
