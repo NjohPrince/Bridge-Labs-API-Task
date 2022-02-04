@@ -22,21 +22,21 @@ const app = express();
 
 // setting up the database connection and server controller
 const startServer = async () => {
-  await mongoose
-    .connect(process.env.DATABASE, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    })
+  // await mongoose
+  //   .connect(process.env.DATABASE, {
+  //     useUnifiedTopology: true,
+  //     useNewUrlParser: true,
+  //   })
 
-    .then(() => {
+  //   .then(() => {
       console.log("Connected to MongoDB!");
       app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
       });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
 };
 
 // middlewares

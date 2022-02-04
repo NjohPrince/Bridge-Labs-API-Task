@@ -1,7 +1,7 @@
 module.exports = {
   tags: [
     {
-      name: "CRUD Operations", // name of a tag
+      name: "Authentication Routes Definition", // name of a tag
     },
   ],
 };
