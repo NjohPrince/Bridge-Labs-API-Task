@@ -15,3 +15,7 @@
 #### 1. Download postman from [postman](https://www.postman.com/downloads/)
 #### 2. Install postman
 #### 3. Run the postman application and follow instructions from [here](https://learning.postman.com/docs/getting-started/introduction/)
+#
+
+✌✌
+#### [Follow instructions here to test the hosted API Routes](https://github.com/NjohPrince/Bridge-Labs-API-Task/blob/main/USAGE.md)
