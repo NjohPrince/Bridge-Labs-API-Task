@@ -79,6 +79,9 @@ Request body: form-data
         "image": fileUpload
     }
 ```
+
+#### This API was build taking into consideration that at the level of the frontend or service consuming this, will pass down the other fields as they were and change the fields necessary to be updated
+
 #
 
 #### => delete post by id
