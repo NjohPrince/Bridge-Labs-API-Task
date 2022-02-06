@@ -3,6 +3,22 @@ const { generateOTP } = require("../services/otp");
 const { sendMail } = require("../services/mail");
 const User = require("../models/user");
 
+module.exports.logout = async (req, res) => {
+  console.log("Logout initiated");
+  const { otp } = req.body;
+  const user = await User.findOne({
+    otp,
+  });
+  if (!user) {
+    return res.status(404).json({ message: "Invalid OTP!" });
+  }
+  const filter = { otp: otp };
+  const updatedUser = await User.updateOne(filter, {
+    $set: { active: false, otp: null },
+  });
+  return res.status(200).json({ message: "User signed out!" });
+};
+
 module.exports.signUpUser = async (req, res) => {
   const { name, email, password } = req.body;
 
