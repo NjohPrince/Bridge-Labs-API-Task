@@ -12,7 +12,7 @@
 - ✔ Uploading files
 - ✔ Crud Operations (similar to the previous task)
 - ✔ Login, register and logout using OTP
-- X Google Auth
+- X Google Auth - In progress
 #
 
 ### 🎉 <mark>Auth Routes</mark>
